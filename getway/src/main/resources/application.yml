@@ -1,0 +1,39 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: service-client
+          uri: lb://service-client
+          predicates:
+            - Path=/api/client/**
+          filters:
+            - RewritePath=/api/client/(?<segment>.*), /$\\{segment}
+    discovery:
+      enabled: true
+    globalcors:
+      corsConfigurations:
+        '[/**]':
+          allowedOrigins:
+            - "http://localhost:4200"
+          allowedMethods:
+            - "GET"
+            - "POST"
+            - "PUT"
+            - "DELETE"
+            - "OPTIONS"
+          allowedHeaders:
+            - "*"
+          allowCredentials: true
+eureka:
+  instance:
+    hostname: localhost
+
+logging:
+  level:
+    org.springframework.web.cors: DEBUG
+    org.springframework.cloud.gateway: DEBUG

@@ -1,0 +1,12 @@
+node_modules/
+Eureka Server/node_modules/
+Service Client/node_modules/
+VoitureClient/node_modules/
+getway/node_modules/
+.idea/
+.vscode/
+*.log
+node_modules/
+*.log
+.idea/
+.vscode/
